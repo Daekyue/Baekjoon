@@ -35,7 +35,7 @@ int main(void) {
         continue; // if문에서는 vis == 1로 체크하는 대신 vis가 0이 아니라면
                   // 넘어가는 형식으로 만들었다
       Q.push({tx, ty});
-      vis[tx][ty] = vis[cur.X][cur.Y] + 1;
+      vis[tx][ty] = vis[cur.X][cur.Y] + 1; // 상하좌우 이동 시 거리가 다 1씩 증가해야 하기에
     }
   }
   cout << vis[n - 1][m - 1]; // n,m의 거리를 알기 위해
