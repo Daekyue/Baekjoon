@@ -1,38 +1,42 @@
-#include <bits/stdc++.h>
+#include<bits/stdc++.h>
 
 using namespace std;
 
-int row[1005];
-int dx[4] = { -2, -1, 1, 2 };
+int arr[1000];
+
+int comp[4] = { -2, -1, 1, 2 };
 
 int main(int argc, char** argv)
 {
-	
-	for (int test_case = 1; test_case <= 10; ++test_case)
+	int test_case;
+
+	for (test_case = 1; test_case <= 10; ++test_case)
 	{
-		int N;
-		cin >> N;
-
-		for (int i = 0; i < N; i++)
-			cin >> row[i];
-
-		int ans = 0;
-		for (int i = 2; i < N - 2; i++)
+		memset(arr, 0, sizeof(arr));
+		int n;
+		cin >> n;
+		for (int i = 0; i < n; i++)
+			cin >> arr[i];
+		int answer = 0;
+		for (int i = 2; i < n - 2; i++)
 		{
-			int see = row[i];
+			bool check = true;
+			int tall = 0;
 			for (int j = 0; j < 4; j++)
 			{
-				if (row[i] - row[i + dx[j]] <= 0)
+				if (arr[i] <= arr[i + comp[j]])
 				{
-					see = 0;
+					check = false;
 					break;
 				}
-				else if (row[i] - row[i + dx[j]] < see)
-					see = row[i] - row[i + dx[j]];
+				tall = max(tall, arr[i + comp[j]]);
 			}
-			ans += see;
+			if (check)
+				answer += arr[i] - tall;
+			tall = 0;
 		}
-		cout << "#" << test_case << " " << ans << "\n";
+
+		cout << "#" << test_case << " " << answer << "\n";
 	}
 	return 0;//정상종료시 반드시 0을 리턴해야합니다.
 }
