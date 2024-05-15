@@ -1,45 +1,44 @@
-#include <iostream>
-#include <vector>
-#include <algorithm>
-#include <string>
+#include <bits/stdc++.h>
 
 using namespace std;
 
-int ans, change;
 string s;
+int n, answer;
 
-void func(int index, int current)
+void func(int k)
 {
-	if (current == change)
+	if (k == n)
 	{
-		ans = max(ans, stoi(s));
+		answer = max(answer, stoi(s));
 		return;
 	}
-	for (int i = index; i < s.size() - 1; i++)
+	for (int i = 0; i < s.size(); i++)
 	{
-		for (int j = i + 1; j < s.size(); j++)
+		for (int j = i+1; j < s.size(); j++)
 		{
-			swap(s[i], s[j]);
-			func(i, current + 1);
-			swap(s[i], s[j]);
+			if (i != j)
+			{
+				swap(s[i], s[j]);
+				func(k + 1);
+				swap(s[j], s[i]);
+			}
 		}
 	}
 }
 
-int main(void)
+int main(int argc, char** argv)
 {
-	int t;
-	cin >> t;
-
-	for (int i = 1; i <= t; i++)
+	int test_case;
+	int T;
+	cin >> T;
+	for (test_case = 1; test_case <= T; ++test_case)
 	{
-		cin >> s >> change;
-		ans = 0;
-
-		if (change > s.size())
-			change = s.size();
-		func(0, 0);
-		cout << "#" << i << " " << ans << endl;
+		cin >> s >> n;
+		answer = 0;
+		if (n > s.size())
+			n = s.size();
+		func(0);
+		cout << "#" << test_case << " " << answer << "\n";
 	}
-	return 0;
+	return 0;//정상종료시 반드시 0을 리턴해야합니다.
 }
