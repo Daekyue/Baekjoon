@@ -16,12 +16,9 @@ void func(int k)
 	{
 		for (int j = i+1; j < s.size(); j++)
 		{
-			if (i != j)
-			{
 				swap(s[i], s[j]);
 				func(k + 1);
 				swap(s[j], s[i]);
-			}
 		}
 	}
 }
