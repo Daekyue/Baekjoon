@@ -1,24 +1,29 @@
 #include <bits/stdc++.h>
+
 using namespace std;
 
 int main() {
+	ios::sync_with_stdio(false);
+	cin.tie(NULL);
+	cout.tie(NULL);
+	
 	int test_case;
-	int n;
-	string s;
-	for (test_case = 1; test_case <= 10; ++test_case) {
-		cin >> n >> s;
-		string result;
+	for (test_case = 1; test_case <= 10; ++test_case) 
+	{
+		int n;
+		string str, result;
+		cin >> n >> str;
+		result.push_back(str[0]);
 
-		for (int i = 0; i < n; i++) {
-			if (!result.empty() && result.back() == s[i]) {
-				result.pop_back(); // 연속된 문자 제거
-			}
-			else {
-				result.push_back(s[i]);
-			}
+		for (int i = 1; i < n; i++)
+		{
+			if (result.back() != str[i])
+				result.push_back(str[i]);
+			else if (result.back() == str[i])
+				result.pop_back();
 		}
 
-		cout << "#" << test_case << " " << result << endl;
+		cout << "#" << test_case << " " << result << "\n";
 	}
 	return 0;
 }
