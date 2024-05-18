@@ -1,61 +1,45 @@
-#include <bits/stdc++.h>
+#include<bits/stdc++.h>
 
 using namespace std;
 
-int num[8];
-int temp[8];
-
-void cal()
-{
-	for (int i = 1; i <= 5; i++)
-	{
-		for (int j = 0; j < 7; j++)
-		{
-			temp[j] = num[j + 1];
-		}
-		temp[7] = num[0] - i;
-		if (temp[7] <= 0)
-		{
-			temp[7] = 0;
-			for (int k = 0; k < 8; k++)
-			{
-				num[k] = temp[k];
-			}
-			return;
-		}
-		for (int k = 0; k < 8; k++)
-		{
-			num[k] = temp[k];
-		}
-	}
-	return;
-}
-
 int main(int argc, char** argv)
 {
+	ios::sync_with_stdio(0);
+	cin.tie(NULL);
+	cout.tie(NULL);
 	int test_case;
+	int T;
 
 	for (test_case = 1; test_case <= 10; ++test_case)
 	{
-		memset(num, 0, sizeof(num));
-		int T;
 		cin >> T;
+		deque<int> dq(8);
 
 		for (int i = 0; i < 8; i++)
-		{
-			cin >> num[i];
+		{	
+			cin >> dq[i];
 		}
-		while (num[7] != 0)
+		while (dq.back() != 0)
 		{
-			cal();
+			for (int i = 1; i <= 5; i++)
+			{
+				int num = dq.front() - i;
+				dq.pop_front();
+				dq.push_back(num);
+				if (dq.back() <= 0)
+				{
+					dq.back() = 0;
+					break;
+				}
+			}
 		}
-		cout << "#" << test_case;
-		for (int k = 0; k < 8; k++)
+		
+		cout << "#" << test_case << " ";
+		for (int i = 0; i < 8; i++)
 		{
-			cout << " " << num[k];
+			cout << dq[i] << " ";
 		}
 		cout << "\n";
 	}
 	return 0;//정상종료시 반드시 0을 리턴해야합니다.
 }
-
