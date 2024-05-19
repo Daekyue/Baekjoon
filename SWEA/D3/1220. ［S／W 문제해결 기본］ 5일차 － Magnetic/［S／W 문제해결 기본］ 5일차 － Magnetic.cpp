@@ -33,7 +33,7 @@ int main(int argc, char** argv)
 				{
 					if (check)
 					{
-						++answer;
+						answer++;
 						check = false;
 					}
 				}
