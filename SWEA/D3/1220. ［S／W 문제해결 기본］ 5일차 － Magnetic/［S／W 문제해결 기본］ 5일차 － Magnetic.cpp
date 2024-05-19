@@ -1,68 +1,45 @@
 #include <bits/stdc++.h>
 
 using namespace std;
-#define num 100
-int board[num + 2][num + 2];
+
+int arr[102][102];
 
 int main(int argc, char** argv)
 {
 	int test_case;
 	int T = 10;
+	
 	for (test_case = 1; test_case <= T; ++test_case)
 	{
-		int n;
-		cin >> n;
-		int count = 0;
-		for (int i = 1; i <= num; i++)
+		int N;
+		cin >> N;
+		int answer = 0;
+		for (int i = 0; i < 100; i++)
 		{
-			for (int j = 1; j <= num; j++)
-				cin >> board[i][j];
+			for (int j = 0; j < 100; j++)
+				cin >> arr[i][j];
 		}
 
-		for (int i = 1; i <= num; i++)
+		for (int row = 0; row < 100; row++)
 		{
-			for (int j = 1; j <= num; j++)
+			bool check = false;
+			for (int col = 0; col < 100; col++)
 			{
-				if (board[i][j] == 1)
+				if (arr[col][row] == 1)
 				{
-					int cur = i;
-					while (board[cur + 1][j] != 2)
-					{
-						board[cur][j] = 0;
-						cur++;
-						if (cur >= num)
-							break;
-						else
-							board[cur][j] = 1;
-					}
+					check = true;
 				}
-				else if (board[i][j] == 2)
+				else if (arr[col][row] == 2)
 				{
-					int cur = i;
-					while (board[cur - 1][j] != 1)
+					if (check)
 					{
-						board[cur][j] = 0;
-						cur--;
-						if (cur <= 0)
-							break;
-						else
-							board[cur][j] = 2;
+						++answer;
+						check = false;
 					}
 				}
 			}
 		}
-		for (int i = 1; i <= num; i++)
-		{
-			for (int j = 1; j <= num; j++)
-			{
-				if (board[i][j] == 1)
-					if (board[i + 1][j] == 2)
-						count++;
-			}
-		}
-		cout << "#" << test_case << " " << count << "\n";
+		cout << "#" << test_case << " " << answer << endl;
 	}
-	// 1은 아래로 2는 위로
-
 	return 0;//정상종료시 반드시 0을 리턴해야합니다.
 }
