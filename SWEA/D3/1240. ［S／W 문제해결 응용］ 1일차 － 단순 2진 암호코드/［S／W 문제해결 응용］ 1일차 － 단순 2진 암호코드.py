@@ -17,10 +17,10 @@ def main():
                 break
 
         # 암호코드 끝부분부터 탐색
-        pos = str_code.rfind('1') # rfind는 오른쪽에서 부터 탐색하는 것
+        pos = str_code.rfind('1')
         pos -= 55  # 암호코드는 56자리이므로, 처음 1이 나온 곳에서 55칸 앞으로 이동
 
-        arr = [int(str_code[pos + i]) for i in range(56)] # 56자리 코드르 뽑아냄
+        arr = [int(str_code[pos + i]) for i in range(56)]
 
         # 코드 해독
         solveNumArr = []
