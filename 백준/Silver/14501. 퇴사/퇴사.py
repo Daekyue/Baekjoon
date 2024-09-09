@@ -1,15 +1,20 @@
-N = int(input())
-counsel = [list(map(int, input().split())) for _ in range(N)]
+def back(day, cost):
+    global answer
+    if day > n:
+        answer = max(answer, cost)
+        return
+    if day + arr[day][0] <= n + 1:
+        back(day + arr[day][0], cost + arr[day][1])
+    back(day+1, cost)
 
-cost = [0] * (N+2)
 
-for i in range(1, len(counsel)+1):
-    T = counsel[i-1][0]
-    P = counsel[i-1][1]
+n = int(input())
+arr = [0] * (n + 1)
+for i in range(1, n+1):
+    a, b = map(int, input().split())
+    arr[i] = (a, b)
 
-    if T+i <= N+1:
-        cost[i+T] = max(cost[i+T], max(cost[:i+1])+P)
-    else:
-        continue
+answer = 0
+back(1, 0)
 
-print(max(cost))
+print(answer)
