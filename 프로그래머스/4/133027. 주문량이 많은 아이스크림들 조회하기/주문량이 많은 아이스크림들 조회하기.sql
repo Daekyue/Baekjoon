@@ -1,0 +1,10 @@
+# 7월 아이스크림 총 주문량과 상반기의 아이스크림 총 주문량을 
+# 더한 값이 큰 순서대로 상위 3개의 맛을 조회하는 SQL 문을 작성해주세요.
+
+SELECT J.FLAVOR
+FROM JULY AS J
+LEFT JOIN FIRST_HALF AS F
+ON J.FLAVOR = F.FLAVOR
+GROUP BY J.FLAVOR
+ORDER BY SUM(J.TOTAL_ORDER) + F.TOTAL_ORDER DESC
+LIMIT 3
