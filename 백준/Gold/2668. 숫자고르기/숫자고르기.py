@@ -1,11 +1,3 @@
-n = int(input())
-arr = [0] * (n + 1)
-for i in range(1, n + 1):
-    arr[i] = int(input())
-
-result = []
-
-
 def dfs(start):
     stack = []
     visited = [False] * (n + 1)  # 이번 DFS 중 방문 여부 확인
@@ -19,6 +11,12 @@ def dfs(start):
     if current == start:
         result.extend(stack)  # 사이클을 발견한 경우
 
+n = int(input())
+arr = [0] * (n + 1)
+for i in range(1, n + 1):
+    arr[i] = int(input())
+
+result = []
 
 for i in range(1, n + 1):
     dfs(i)
