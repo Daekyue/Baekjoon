@@ -1,10 +1,9 @@
 from collections import deque
 
-# 4-directional movement (right, down, left, up)
 dx = [1, 0, -1, 0]
 dy = [0, 1, 0, -1]
 
-def mark_outside_air():
+def check_air():
     air = [[0]*M for _ in range(N)]
     visited = [[False]*M for _ in range(N)]
     q = deque()
@@ -24,20 +23,20 @@ def mark_outside_air():
                     visited[nx][ny] = True
                     air[nx][ny] = 1
                     q.append((nx, ny))
-                elif arr[nx][ny] == 1:
-                    # Cheese cell; mark as visited to avoid rechecking
+                elif arr[nx][ny] == 1: # 치즈일 경우 그냥 방문 처리
                     visited[nx][ny] = True
     return air
 
-# Input
+# 입력 받기
 N, M = map(int, input().split())
 arr = [list(map(int, input().split())) for _ in range(N)]
 
 time = 0
 while True:
-    air = mark_outside_air()
+    air = check_air() # 공기 전파 먼저 체크
     melt = []
-    # Find cheese cells to melt
+    
+    # 녹일 치즈 셀 찾기
     for i in range(N):
         for j in range(M):
             if arr[i][j] == 1:
