@@ -12,7 +12,7 @@ bool solution(string s)
     {
         if(s[i] == '(')
             st.push('(');
-        else if(s[i] == ')' && !st.empty()) // )가 입력 되었는데 비어있을 경우 짝이 맞지 않으므로 false
+        else if(s[i] == ')' && !st.empty())
             st.pop();
         else
         {
@@ -20,7 +20,7 @@ bool solution(string s)
             break;
         }
     }
-    if(!st.empty()) // 비어있지 않을 경우 짝이 맞지 않는 것이므로 false
+    if(!st.empty())
         answer = false;
     return answer;
 }
