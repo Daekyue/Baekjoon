@@ -1,3 +1,8 @@
 def solution(s):
-    nums = list(map(int, s.split()))
-    return f"{min(nums)} {max(nums)}"
+    lst = list(map(int, s.split()))
+    a = max(lst)
+    b = min(lst)
+    
+    answer = f"{b} {a}"
+
+    return answer
