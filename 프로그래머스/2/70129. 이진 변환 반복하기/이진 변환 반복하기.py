@@ -1,5 +1,4 @@
 def solution(s):
-    answer = []
     delete = 0
     turn = 0
     s = list(map(int,s))
@@ -20,7 +19,5 @@ def solution(s):
             s.append(sm % 2)
             sm = sm // 2
         s.append(1)
-    answer.append(turn)
-    answer.append(delete)
     
-    return answer
+    return [turn, delete]
