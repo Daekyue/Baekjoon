@@ -1,16 +1,18 @@
-# 최소공배수 = 두 수의 곱 // 최대공약수
-def func(a, b):
-    ta, tb = a, b
-    while b > 0:
-        a, b = b, a % b
-    
-    maxdiv = a
-    
-    return ta * tb // maxdiv
+# 유클리드 호제법 (A, B) => (B, A % B)
+# 하나씩 하나씩 진행하는 방법
+def func(a,b):
+    x, y = a, b
+    while x % y != 0:
+        temp = x
+        x = y
+        y = temp%y
+        
+    return int(a*b/y)
 
 def solution(arr):
+    answer = 0
     arr.sort()
-    answer = arr[0]
-    for i in range (len(arr)-1):
-        answer = func(answer, arr[i+1])
-    return answer
+    for i in range(len(arr)-1):
+        arr[i+1] = func(arr[i+1], arr[i])
+        
+    return arr[-1]
