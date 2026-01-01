@@ -24,7 +24,7 @@ def bfs(copy, ij, vis, div):
                 if vis_n == vis[ni][nj]:
                     q.append((ni, nj))
                     copy[ni][nj] = div
-                    vis[ni][nj] = 0
+                    vis[ni][nj] = -1
                     
 
 def dfs(vis, i, j, count):
