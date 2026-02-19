@@ -1,23 +1,20 @@
-#include<bits/stdc++.h>
-
+#include <bits/stdc++.h>
 using namespace std;
 
-int main(void)
-{
-    ios::sync_with_stdio(0);
-    cin.tie(0);
+int main() {
+    string word;
+    cin >> word;
 
-    string s;
-    int ans[26];
-    for (int i = 0; i < 26; i++) {
-        ans[i] = 0;
+    vector<int> v(26, 0);
+
+    for (int i=0; i < word.length(); i++) {
+        v[word[i] - 'a']++;
     }
-    cin >> s;
-    for (int i = 0; i < s.size(); i++)
+    
+    for (int i : v)
     {
-        ans[s[i] - 'a']++;
+      cout << i <<' ';
     }
-    for (int i = 0; i < 26; i++) {
-        cout << ans[i] << " ";
-    }
+
+    return 0;
 }
