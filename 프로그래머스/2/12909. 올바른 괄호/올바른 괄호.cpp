@@ -1,6 +1,6 @@
 #include<string>
 #include <iostream>
-#include <bits/stdc++.h>
+#include <stack>
 
 using namespace std;
 
@@ -8,19 +8,26 @@ bool solution(string s)
 {
     bool answer = true;
     stack<char> st;
-    for(int i=0; i < s.length(); i++)
+    for (char c : s)
     {
-        if(s[i] == '(')
-            st.push('(');
-        else if(s[i] == ')' && !st.empty())
-            st.pop();
-        else
+        if (c == '(')
         {
-            answer = false;
-            break;
+            st.push('(');
+        }
+        else if(c == ')')
+        {
+            if (!st.empty())
+                st.pop();
+            else
+            {
+                answer = false;
+                break;
+            }
         }
     }
-    if(!st.empty())
+    
+    if (!st.empty())
         answer = false;
+
     return answer;
 }
