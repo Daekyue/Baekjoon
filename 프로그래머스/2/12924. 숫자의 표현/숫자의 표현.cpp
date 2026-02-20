@@ -6,19 +6,27 @@ using namespace std;
 
 int solution(int n) {
     int answer = 0;
+    int start = 1;
+    int end = 1;
+    int sum = 1;
     
-    for (int i = 1; i < n / 2 + 1; i++)
+    while (start <= n)
     {
-        int sum = 0;
-        int j = i;
-        while (sum < n)
-        {
-            sum += j;
-            j++;
-        }
-        if (sum == n)
+        if(sum == n)
             answer++;
+        
+        if(sum >= n)
+        {
+            sum -= start;
+            start++;
+        }
+        else
+        {
+            end++;
+            sum += end;
+        }
     }
     
-    return answer + 1; // 자기 자신 + 1
+    
+    return answer;
 }
