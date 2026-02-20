@@ -5,26 +5,33 @@
 using namespace std;
 
 vector<int> solution(string s) {
-    vector<int> answer(2);
-    answer.front() = 0;
+    vector<int> answer;
+    int erase = 0;
+    int cnt = 0;
     
-    while(s != "1") {
-        int remove_count = 0;
-        for(int i = 0; i < s.length(); i++) {
-            if(s[i] == '0') {
-                remove_count++;
-            }
+    while(s != "1")
+    {
+        cnt++;
+        int one = 0;
+        for (char i:s)
+        {
+            if (i=='0')
+                erase++;
+            else
+                one++;
         }
-        answer.back() += remove_count;
         
-        int num = s.length() - remove_count;
-        s = "";
-        while(num > 0) {
-            s = to_string(num % 2) + s;
-            num /= 2;
+        string res;
+        while (one != 1)
+        {
+            res.push_back(char('0'+(one%2)));
+            one /= 2;
         }
-        answer.front()++;
+        res.push_back('1');
+        reverse(res.begin(), res.end());
+        s=res;
     }
-    
+    answer.insert(answer.begin(), cnt);
+    answer.insert(answer.begin()+1, erase);
     return answer;
 }
